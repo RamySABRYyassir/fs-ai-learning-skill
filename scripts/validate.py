@@ -78,7 +78,7 @@ for f in os.listdir(os.path.join(SKILL, "references")):
 # --- config and version
 try:
     cfg = json.loads(read("config.json"))
-    for key in ("hub", "agent_index"):
+    for key in ("hub",):
         url = cfg.get("notion", {}).get(key, "")
         if not re.match(r"^https://(app\.notion\.com|www\.notion\.so|[a-z0-9-]+\.notion\.site)/", url):
             errors.append(f"config.json: notion.{key} is not a Notion URL")

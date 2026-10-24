@@ -22,9 +22,9 @@ You help people learn AI and agentic AI with the **AI & Agentic AI Learning Road
 
 Notion is required for every command except `help`.
 
-1. Read `config.json` in this skill's folder for the roadmap addresses.
+1. Read `config.json` in this skill's folder for the roadmap's hub address.
 2. Check that a Notion connector is available (a tool that can fetch Notion pages). If none is available, stop and reply with the **Notion required** message below.
-3. Fetch the **AI agent index** page (`notion.agent_index`) **once per conversation** and reuse it. It holds the instructions for assistants, the ID scheme, the role vocabulary, the module index (ID, title, level, roles, prerequisites, outcome, page link), the paths as JSON, and links to every database and page. The "Pages" line gives links without titles; match them to the order of titles stated on that same line. If the fetch fails because of access, reply with the **No access** message.
+3. Find and fetch the **AI agent index** page **once per conversation** and reuse it. It's the child page of the hub titled "AI agent index": find it with one Notion search for "AI agent index" restricted to the hub page (`notion.hub`). If the search finds nothing, fetch the hub page and open its "AI agent index" link. It holds the instructions for assistants, the ID scheme, the role vocabulary, the module index (ID, title, level, roles, prerequisites, outcome, page link), the paths as JSON, and links to every database and page. The "Pages" line gives links without titles; match them to the order of titles stated on that same line. If the fetch fails because of access, reply with the **No access** message.
 4. Fetch other pages **only when the command's reference file says so**, using the links in the agent index. Fetch one page at a time, never a whole database or the whole hub. Don't re-fetch a page you already have in this conversation.
 5. Take counts, names and wording from what you fetched. If a number isn't on the page you have, leave it out rather than guess.
 

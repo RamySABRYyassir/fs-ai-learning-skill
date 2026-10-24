@@ -1,7 +1,6 @@
 {
-  "skill_version": "1.0.0",
+  "skill_version": "1.0.1",
   "notion": {
-    "hub": "https://app.notion.com/p/403f03bdfe1b81febbebf5295bf9f1c5",
-    "agent_index": "https://app.notion.com/p/403f03bdfe1b810ebee8fc83de99a194"
+    "hub": "https://app.notion.com/p/068a06d6898c835a8d7401945c8beaca"
   }
 }

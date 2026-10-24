@@ -80,14 +80,14 @@ Update the skill only when its behaviour changes (a new command, a changed metho
    - **Plugin installs** pick up the new commit: on the next update for people who turned on auto-update for the marketplace (Customize → Plugins, or **Marketplaces** in `/plugin` in Claude Code), or when they run `/plugin marketplace update ai-learning`. `plugin.json` deliberately has no `version`, so every pushed commit counts as a new version.
    - **Zip installs:** re-upload the new zip. Colleagues you shared it with get it automatically.
 
-If the roadmap moves to another Notion page, change only the two URLs in `config.json`.
+If the roadmap moves to another Notion page, change only the hub URL in `config.json`.
 
 ## How it works
 
 ```
 You ──▶ Claude + this skill
-          1. reads config.json (where the roadmap lives)
-          2. fetches the "AI agent index" page once per chat
+          1. reads config.json (the roadmap hub link)
+          2. finds the "AI agent index" under the hub and fetches it once per chat
              (ID scheme, role vocabulary, module index, paths, links)
           3. fetches one module, project or glossary page only when a command needs it
           4. answers with IDs, titles and links back to Notion
@@ -104,7 +104,7 @@ Keeping token use low is part of the design: one index fetch per chat, single pa
 | The command table, and each command's method (`references/`) | Levels, modules, checkpoints, outcomes and order |
 | Ground rules and answer style | Role paths, practice projects, glossary, resources |
 | Version and changelog | Counts, links, standards wording, program phases, company pack |
-| The two Notion URLs (`config.json`) | |
+| The Notion hub URL (`config.json`) | |
 
 ## Repository layout
 
