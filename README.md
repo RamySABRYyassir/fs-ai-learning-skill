@@ -41,14 +41,31 @@ Notion is required on purpose: the coach reads the roadmap live, so it's always 
 
 ## Install
 
-1. Build the package (or download it from the repository's releases if one is published):
+Pick one of two ways. Either way, start a chat afterwards and type `about`.
+
+### A. From GitHub, as a plugin (no download)
+
+This repository is also a plugin marketplace.
+
+- **Claude desktop app:** **Customize → Plugins → Add → Add marketplace → Add from a repository**, enter `RamySABRYyassir/fs-ai-learning-skill`, then install **ai-learning-coach**.
+- **Claude Code:**
+  ```
+  /plugin marketplace add RamySABRYyassir/fs-ai-learning-skill
+  /plugin install ai-learning-coach@ai-learning
+  ```
+
+Plugins need a Pro, Max, Team or Enterprise plan. If your organisation restricts marketplaces, an owner has to allow this repository.
+
+### B. As a skill zip
+
+1. Build the zip:
    ```bash
    ./scripts/package.sh        # creates dist/ai-learning-coach-<version>.zip
    ```
-2. Add it to Claude:
-   - **Claude apps:** upload the zip in Claude's settings where skills are managed. If your organisation shares skills centrally, an admin can add it for everyone.
-   - **Claude Code:** copy `skills/ai-learning-coach/` into `~/.claude/skills/` (just for you) or `.claude/skills/` in a project repository (for everyone working in it).
-3. Start a chat and type `about`.
+2. In Claude: **Customize → Skills → + → Create skill → Upload a skill**, and choose the zip.
+3. *(Team and Enterprise)* Share it from the skill's **⋯** menu, or **Publish to org**. People you share with get each new upload automatically; published skills go through your organisation's review again.
+
+Claude Code without the marketplace: copy `plugins/ai-learning-coach/skills/ai-learning-coach/` into `~/.claude/skills/`.
 
 ## Update
 
@@ -56,10 +73,12 @@ Most roadmap changes need **no skill update**: new modules, resources, glossary 
 
 Update the skill only when its behaviour changes (a new command, a changed method):
 
-1. Edit the files under `skills/ai-learning-coach/`.
+1. Edit the files under `plugins/ai-learning-coach/skills/ai-learning-coach/`.
 2. Bump `skill_version` in `config.json` and add an entry at the top of `CHANGELOG.md` (the coach shows it as "What's new").
 3. Run `./scripts/package.sh`. It validates first and refuses to build if something is inconsistent.
-4. Commit, push, and re-upload the new zip (or pull, in Claude Code).
+4. Commit and push.
+   - **Plugin installs** pick up the new commit: on the next update for people who turned on auto-update for the marketplace (Customize → Plugins, or **Marketplaces** in `/plugin` in Claude Code), or when they run `/plugin marketplace update ai-learning`. `plugin.json` deliberately has no `version`, so every pushed commit counts as a new version.
+   - **Zip installs:** re-upload the new zip. Colleagues you shared it with get it automatically.
 
 If the roadmap moves to another Notion page, change only the two URLs in `config.json`.
 
@@ -90,18 +109,21 @@ Keeping token use low is part of the design: one index fetch per chat, single pa
 ## Repository layout
 
 ```
-ai-learning-skill/
+fs-ai-learning-skill/
 ├── README.md
-├── skills/ai-learning-coach/      ← the skill (this folder is what gets zipped)
-│   ├── SKILL.md                   ← rules, data loading, command table, routing
-│   ├── config.json                ← Notion URLs and skill version
-│   ├── CHANGELOG.md
-│   └── references/                ← one file per command, loaded only when used
-│       ├── about.md  help.md  place-me.md  explore.md  explain.md
-│       └── next.md  suggest-project.md  checkpoint.md  risk-check.md
+├── .claude-plugin/marketplace.json        ← makes the repo an installable marketplace
+├── plugins/ai-learning-coach/
+│   ├── .claude-plugin/plugin.json         ← plugin manifest (no version: installs track commits)
+│   └── skills/ai-learning-coach/          ← the skill (this folder is what gets zipped)
+│       ├── SKILL.md                       ← rules, data loading, command table, routing
+│       ├── config.json                    ← Notion URLs and display version
+│       ├── CHANGELOG.md
+│       └── references/                    ← one file per command, loaded only when used
+│           ├── about.md  help.md  place-me.md  explore.md  explain.md
+│           └── next.md  suggest-project.md  checkpoint.md  risk-check.md
 └── scripts/
-    ├── validate.py                ← consistency checks
-    └── package.sh                 ← validate + build dist/*.zip
+    ├── validate.py                        ← consistency checks (skill + manifests)
+    └── package.sh                         ← validate + build dist/*.zip
 ```
 
 ## Adding a command

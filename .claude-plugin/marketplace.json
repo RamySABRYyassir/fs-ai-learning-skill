@@ -1,0 +1,14 @@
+{
+  "name": "ai-learning",
+  "description": "AI Learning Coach: a coach for the AI & Agentic AI Learning Roadmap in Notion",
+  "owner": {
+    "name": "Ramy Sabry"
+  },
+  "plugins": [
+    {
+      "name": "ai-learning-coach",
+      "source": "./plugins/ai-learning-coach",
+      "description": "Find your level, explore modules, explain AI terms, get your next module, pick a practice project, prepare a checkpoint and risk-check AI use cases."
+    }
+  ]
+}

@@ -10,7 +10,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL = os.path.join(ROOT, "skills", "ai-learning-coach")
+SKILL = os.path.join(ROOT, "plugins", "ai-learning-coach", "skills", "ai-learning-coach")
 errors = []
 
 
@@ -90,6 +90,34 @@ try:
         errors.append(f"CHANGELOG.md: newest entry must be version {version}")
 except json.JSONDecodeError as e:
     errors.append(f"config.json: invalid JSON ({e})")
+
+# --- plugin and marketplace manifests (for "Add marketplace" installs)
+def load(path):
+    try:
+        with open(os.path.join(ROOT, path), encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        errors.append(f"{path}: missing or invalid JSON ({e})")
+        return {}
+
+
+plugin = load("plugins/ai-learning-coach/.claude-plugin/plugin.json")
+market = load(".claude-plugin/marketplace.json")
+if plugin.get("name") != name:
+    errors.append(f"plugin.json: name must be '{name}'")
+for key in ("name", "owner", "plugins"):
+    if key not in market:
+        errors.append(f"marketplace.json: missing '{key}'")
+entries = [p for p in market.get("plugins", []) if p.get("name") == name]
+if not entries:
+    errors.append(f"marketplace.json: no plugin entry named '{name}'")
+else:
+    src = entries[0].get("source", "")
+    if ".." in src or not os.path.isdir(os.path.join(ROOT, src)):
+        errors.append(f"marketplace.json: source '{src}' must be an existing folder inside the repo")
+    if "version" in entries[0] or "version" in plugin:
+        errors.append("plugin.json / marketplace.json: leave 'version' out so installs track commits "
+                      "(the display version lives in config.json)")
 
 if errors:
     print("Validation failed:")
