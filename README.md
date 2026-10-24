@@ -47,10 +47,10 @@ Pick one of two ways. Either way, start a chat afterwards and type `about`.
 
 This repository is also a plugin marketplace.
 
-- **Claude desktop app:** **Customize → Plugins → Add → Add marketplace → Add from a repository**, enter `RamySABRYyassir/ai-learning-skill`, then install **ai-learning-skill**.
+- **Claude desktop app:** **Customize → Plugins → Add → Add marketplace → Add from a repository**, enter `ramysabryali/ai-learning-skill`, then install **ai-learning-skill**.
 - **Claude Code:**
   ```
-  /plugin marketplace add RamySABRYyassir/ai-learning-skill
+  /plugin marketplace add ramysabryali/ai-learning-skill
   /plugin install ai-learning-skill@ai-learning
   ```
 
