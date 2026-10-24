@@ -47,11 +47,11 @@ Pick one of two ways. Either way, start a chat afterwards and type `about`.
 
 This repository is also a plugin marketplace.
 
-- **Claude desktop app:** **Customize → Plugins → Add → Add marketplace → Add from a repository**, enter `RamySABRYyassir/fs-ai-learning-skill`, then install **ai-learning-coach**.
+- **Claude desktop app:** **Customize → Plugins → Add → Add marketplace → Add from a repository**, enter `RamySABRYyassir/ai-learning-skill`, then install **ai-learning-skill**.
 - **Claude Code:**
   ```
-  /plugin marketplace add RamySABRYyassir/fs-ai-learning-skill
-  /plugin install ai-learning-coach@ai-learning
+  /plugin marketplace add RamySABRYyassir/ai-learning-skill
+  /plugin install ai-learning-skill@ai-learning
   ```
 
 Plugins need a Pro, Max, Team or Enterprise plan. If your organisation restricts marketplaces, an owner has to allow this repository.
@@ -60,12 +60,12 @@ Plugins need a Pro, Max, Team or Enterprise plan. If your organisation restricts
 
 1. Build the zip:
    ```bash
-   ./scripts/package.sh        # creates dist/ai-learning-coach-<version>.zip
+   ./scripts/package.sh        # creates dist/ai-learning-skill-<version>.zip
    ```
 2. In Claude: **Customize → Skills → + → Create skill → Upload a skill**, and choose the zip.
 3. *(Team and Enterprise)* Share it from the skill's **⋯** menu, or **Publish to org**. People you share with get each new upload automatically; published skills go through your organisation's review again.
 
-Claude Code without the marketplace: copy `plugins/ai-learning-coach/skills/ai-learning-coach/` into `~/.claude/skills/`.
+Claude Code without the marketplace: copy `plugins/ai-learning-skill/skills/ai-learning-skill/` into `~/.claude/skills/`.
 
 ## Update
 
@@ -73,7 +73,7 @@ Most roadmap changes need **no skill update**: new modules, resources, glossary 
 
 Update the skill only when its behaviour changes (a new command, a changed method):
 
-1. Edit the files under `plugins/ai-learning-coach/skills/ai-learning-coach/`.
+1. Edit the files under `plugins/ai-learning-skill/skills/ai-learning-skill/`.
 2. Bump `skill_version` in `config.json` and add an entry at the top of `CHANGELOG.md` (the coach shows it as "What's new").
 3. Run `./scripts/package.sh`. It validates first and refuses to build if something is inconsistent.
 4. Commit and push.
@@ -109,12 +109,12 @@ Keeping token use low is part of the design: one index fetch per chat, single pa
 ## Repository layout
 
 ```
-fs-ai-learning-skill/
+ai-learning-skill/
 ├── README.md
 ├── .claude-plugin/marketplace.json        ← makes the repo an installable marketplace
-├── plugins/ai-learning-coach/
+├── plugins/ai-learning-skill/
 │   ├── .claude-plugin/plugin.json         ← plugin manifest (no version: installs track commits)
-│   └── skills/ai-learning-coach/          ← the skill (this folder is what gets zipped)
+│   └── skills/ai-learning-skill/          ← the skill (this folder is what gets zipped)
 │       ├── SKILL.md                       ← rules, data loading, command table, routing
 │       ├── config.json                    ← Notion URLs and display version
 │       ├── CHANGELOG.md

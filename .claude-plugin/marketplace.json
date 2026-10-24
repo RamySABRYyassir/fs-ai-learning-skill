@@ -6,9 +6,12 @@
   },
   "plugins": [
     {
-      "name": "ai-learning-coach",
-      "source": "./plugins/ai-learning-coach",
+      "name": "ai-learning-skill",
+      "source": "./plugins/ai-learning-skill",
       "description": "Find your level, explore modules, explain AI terms, get your next module, pick a practice project, prepare a checkpoint and risk-check AI use cases."
     }
-  ]
+  ],
+  "renames": {
+    "ai-learning-coach": "ai-learning-skill"
+  }
 }

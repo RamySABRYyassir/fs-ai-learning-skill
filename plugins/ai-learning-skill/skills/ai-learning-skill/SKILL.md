@@ -1,5 +1,5 @@
 ---
-name: ai-learning-coach
+name: ai-learning-skill
 description: Coach for the AI & Agentic AI Learning Roadmap in Notion (levels Ask, Connect, Delegate, Operate). Use when someone wants to learn AI or agentic AI with the roadmap - find their level, explore modules, explain an AI term or concept, get their next module, pick a practice project, take a level checkpoint, or check an AI use case for risk - or asks what the roadmap is, what this skill can do, "help", "menu" or "where do I start".
 ---
 

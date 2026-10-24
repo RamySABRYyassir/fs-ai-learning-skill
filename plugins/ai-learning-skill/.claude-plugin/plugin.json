@@ -1,7 +1,8 @@
 {
-  "name": "ai-learning-coach",
+  "name": "ai-learning-skill",
   "description": "Coach for the AI & Agentic AI Learning Roadmap in Notion (levels Ask, Connect, Delegate, Operate).",
   "author": {
     "name": "Ramy Sabry"
-  }
+  },
+  "displayName": "AI Learning Coach"
 }

@@ -10,7 +10,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL = os.path.join(ROOT, "plugins", "ai-learning-coach", "skills", "ai-learning-coach")
+SKILL = os.path.join(ROOT, "plugins", "ai-learning-skill", "skills", "ai-learning-skill")
 errors = []
 
 
@@ -101,7 +101,7 @@ def load(path):
         return {}
 
 
-plugin = load("plugins/ai-learning-coach/.claude-plugin/plugin.json")
+plugin = load("plugins/ai-learning-skill/.claude-plugin/plugin.json")
 market = load(".claude-plugin/marketplace.json")
 if plugin.get("name") != name:
     errors.append(f"plugin.json: name must be '{name}'")
